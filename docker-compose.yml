@@ -1,0 +1,17 @@
+
+services:
+    postgre:
+        image: postgres:latest
+        container_name: postgresContainer
+        # restart: always
+        environment:
+            POSTGRES_USER: postgresuser
+            POSTGRES_PASSWORD: postgrespw
+            POSTGRES_DB: auctions
+        volumes:
+            - postgre_data: /var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+
+volumes:
+    postgre_data:
