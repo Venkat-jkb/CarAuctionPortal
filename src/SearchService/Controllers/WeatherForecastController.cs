@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace AuctionService.Controllers;
+namespace SearchService.Controllers;
 
 [ApiController]
 [Route("[controller]")]
