@@ -1,4 +1,3 @@
-
 services:
     postgre:
         image: postgres:latest
@@ -9,9 +8,30 @@ services:
             POSTGRES_PASSWORD: postgrespw
             POSTGRES_DB: auctions
         volumes:
-            - postgre_data: /var/lib/postgresql/data
+            - postgre_data:/var/lib/postgresql/data
         ports:
             - "5432:5432"
 
+    mongodb:
+        image: mongo:latest
+        container_name: mongoContainer
+        # restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: mongouser
+            MONGO_INITDB_ROOT_PASSWORD: mongopw
+        volumes:
+            - mongo_data:/data/db
+        ports:
+            - "27017:27017"
+    
+    rabbitmq:
+        image: rabbitmq:management
+        container_name: rabbitContainer
+        # restart: always
+        ports:
+            - "15672:15672"  # RabbitMQ Management UI
+            - "5672:5672"    # RabbitMQ default port
+
 volumes:
     postgre_data:
+    mongo_data:
